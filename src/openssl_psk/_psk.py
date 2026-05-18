@@ -160,8 +160,8 @@ def wrap_socket_client(
     ctx = _make_ctx(ciphers, server_side=False)
 
     if _HAS_NATIVE_PSK:
-        # Python 3.13+: callback receives hint as str|None, returns (psk, identity)
-        def _native_cb(hint: "str | None"):
+        # Python 3.13+: callback receives (socket, hint) as str|None, returns (psk, identity)
+        def _native_cb(socket_obj, hint: "str | None"):
             psk_b, id_b = resolver(hint.encode() if hint else None)
             return psk_b, id_b.decode() if id_b else ""
         ctx.set_psk_client_callback(_native_cb)
@@ -212,8 +212,8 @@ def wrap_socket_server(
     ctx = _make_ctx(ciphers, server_side=True)
 
     if _HAS_NATIVE_PSK:
-        # Python 3.13+: callback receives identity as str, returns psk bytes
-        def _native_cb(identity: str) -> bytes:
+        # Python 3.13+: callback receives (socket, identity) as str, returns psk bytes
+        def _native_cb(socket_obj, identity: str) -> bytes:
             return resolver(identity.encode())
         ctx.set_psk_server_callback(_native_cb, identity_hint=hint)
     else:
