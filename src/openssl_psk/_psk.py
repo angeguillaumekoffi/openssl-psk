@@ -213,8 +213,8 @@ def wrap_socket_server(
 
     if _HAS_NATIVE_PSK:
         # Python 3.13+: callback receives identity as str, returns psk bytes
-        def _native_cb(identity: str) -> bytes:
-            return resolver(identity.encode())
+        def _native_cb(identity: "str | None") -> bytes:
+            return resolver(identity.encode() if identity is not None else b"")
         ctx.set_psk_server_callback(_native_cb, identity_hint=hint)
     else:
         ptr = _ssl_ctx_ptr(ctx)
