@@ -35,6 +35,9 @@ Homepage = "https://github.com/angekoffi/openssl-psk"
 Repository = "https://github.com/angekoffi/openssl-psk"
 "Bug Tracker" = "https://github.com/angekoffi/openssl-psk/issues"
 
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
 [tool.setuptools.packages.find]
 where = ["src"]
 
