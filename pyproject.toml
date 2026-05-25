@@ -10,7 +10,7 @@ readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.10"
 authors = [
-    { name = "Ange Guillaume Koffi", email = "ange.guillaume.koffi@zen-networks.ma" },
+    { name = "Ange Guillaume Koffi", email = "angekoffiguillaume@gmail.com" },
 ]
 keywords = ["tls", "psk", "ssl", "pre-shared key", "openssl", "iot", "embedded"]
 classifiers = [
