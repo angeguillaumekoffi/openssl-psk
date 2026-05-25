@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "openssl-psk"
-version = "0.1.0"
+version = "0.1.1"
 description = "TLS-PSK socket wrapper for Python 3.10+ — no compiled extensions required"
 readme = "README.md"
 license = { text = "MIT" }
