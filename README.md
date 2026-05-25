@@ -11,12 +11,9 @@ pip install openssl-psk
 
 ## Why this exists
 
-The standard `ssl` module has no PSK support below Python 3.13, and the only
-existing library ([sslpsk](https://github.com/drbild/sslpsk)) is broken on
-Python 3.12+ because its `wrap_socket()` creates a default context with
-`check_hostname=True`, which raises `ValueError` for server-side sockets.
+The standard `ssl` module has no PSK support below Python 3.13.
 
-`openssl-psk` fixes this by:
+`openssl-psk` works around this limitation by:
 - Calling `libssl`'s `SSL_CTX_set_psk_*_callback` directly via `ctypes` on
   Python 3.10–3.12
 - Using the native `SSLContext.set_psk_*_callback()` API transparently on
